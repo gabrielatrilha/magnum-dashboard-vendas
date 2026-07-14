@@ -132,4 +132,4 @@ async function tryLogin(){const pw=document.getElementById("pw").value;document.
 document.getElementById("gbtn").onclick=tryLogin;
 document.getElementById("pw").addEventListener("keydown",e=>{if(e.key==="Enter")tryLogin();});
 
-if(localStorage.getItem('mi_auth')==='ok'){decrypt(atob('bWFnbnVtQHZlbmRhcw=='));document.getElementById('gate').style.display='none';document.getElementById('app').style.display='';try{init();}catch(e){}}</script></body></html>
+if(localStorage.getItem('mi_auth')==='ok'){document.getElementById('pw').value=atob('bWFnbnVtQHZlbmRhcw==');tryLogin();}</script></body></html>
