@@ -4,13 +4,6 @@
 <style>
 :root{--bg:#0f172a;--panel:#1e293b;--panel2:#172033;--line:#334155;--txt:#e2e8f0;--mut:#94a3b8;--c1:#38bdf8;--c2:#34d399;--c3:#fbbf24;--c4:#a78bfa}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,system-ui,Arial,sans-serif;background:var(--bg);color:var(--txt)}
-#gate{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:50}
-#gate .box{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:30px;width:340px;text-align:center}
-#gate h2{margin:0 0 6px;font-size:18px}#gate p{color:var(--mut);font-size:13px;margin:0 0 18px}
-#gate input{width:100%;padding:11px 12px;border:1px solid var(--line);background:var(--panel2);color:var(--txt);border-radius:9px;font-size:15px;margin-bottom:12px}
-#gate button{width:100%;padding:11px;border:0;background:#2563eb;color:#fff;border-radius:9px;font-size:15px;font-weight:700;cursor:pointer}
-#gerr{color:#fca5a5;font-size:13px;height:18px;margin-top:8px}
-#app{display:none}
 header{padding:20px 28px;border-bottom:1px solid var(--line)}
 header h1{font-size:20px;margin:0}header .sub{color:var(--mut);font-size:13px;margin-top:4px}
 .wrap{padding:20px 28px;max-width:1060px;margin:0 auto}
@@ -52,9 +45,6 @@ tr.tot td{font-weight:800;border-top:2px solid #2563eb;background:#1b2740}tr.tot
 .vlist{max-height:340px;overflow:auto;border:1px solid var(--line);border-radius:8px}
 .vlist .row{padding:7px 10px}.warnrow .nm{color:#fca5a5}
 </style></head><body>
-<div id="gate"><div class="box"><h2>Painel do Administrador</h2><p>Digite sua senha para acessar</p>
-<input type="password" id="pw" placeholder="Senha" autofocus>
-<button id="gbtn">Entrar</button><div id="gerr"></div></div></div>
 <div id="app">
 <header><h1>Painel do Administrador</h1><div class="sub">Magnum Import · 2026</div></header>
 <div class="wrap">
@@ -130,9 +120,4 @@ function init(){VENDS=Object.keys(ALL);vend=VENDS[0];
  const vbar=document.getElementById("vbar");if(vbar){VENDS.forEach((v,i)=>{const b=document.createElement("button");b.textContent=v;if(i===0)b.classList.add("active");
   b.onclick=()=>{vend=v;[...vbar.children].forEach(x=>x.classList.remove("active"));b.classList.add("active");renderAll();};vbar.appendChild(b);});}
  document.getElementById("gsearch").addEventListener("input",renderAll);const _bs=document.getElementById("bsearch");if(_bs)_bs.addEventListener("input",renderBase);const _bh=document.getElementById("baseHead");if(_bh)_bh.onclick=()=>{const bd=document.getElementById("basebody");const op=bd.style.display==="none";bd.style.display=op?"block":"none";_bh.textContent=(op?"▾":"▸")+" Minha base de médicos — clique para "+(op?"fechar":"abrir");};const _mph=document.getElementById("mpHead");if(_mph)_mph.onclick=()=>{const w=document.getElementById("mpwrap");const op=w.style.display==="none";w.style.display=op?"block":"none";if(op)renderMetaProd();_mph.textContent=(op?"▾":"▸")+" Metas por produto (anual) — clique para "+(op?"fechar":"abrir");};renderAll();}
-async function tryLogin(){const pw=document.getElementById("pw").value;document.getElementById("gerr").textContent="";
- try{ALL=await decrypt(pw);document.getElementById("gate").style.display="none";document.getElementById("app").style.display="block";init();}
- catch(e){document.getElementById("gerr").textContent="Senha incorreta.";}}
-document.getElementById("gbtn").onclick=tryLogin;
-document.getElementById("pw").addEventListener("keydown",e=>{if(e.key==="Enter")tryLogin();});
 </script></body></html>
